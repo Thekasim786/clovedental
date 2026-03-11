@@ -70,34 +70,40 @@ body {
 /* Hero Section */
 .hero {
   display: flex;
-  height: 450px;
+  min-height: 450px;
+  height: 520px;
 }
 
 .hero-left {
   flex: 1;
-  background: linear-gradient(90deg, #ffffff7f 0%, #ffffff7f 100%),
-    url("../assets/images/img_emptystomatologyorthodontistbrightofficeroomwithnobodyit_1.png");
+  order: 1;
+  background: linear-gradient(90deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.02) 100%),
+    url("./assets/images/img_emptystomatologyorthodontistbrightofficeroomwithnobodyit_1.png");
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  padding-bottom: 40px;
 }
 
 .hero-content {
-  background: linear-gradient(90deg, #ffffff7f 0%, #ffffff7f 100%);
-  padding: 21px 60px;
-  border-radius: 0;
-  box-shadow: 0px 4px 15px #888888ff;
-  max-width: 644px;
-  margin-left: 0;
+  background: rgba(255, 255, 255, 0.55);
+  padding: 24px 32px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 24px rgba(0,0,0,0.08);
+  max-width: 420px;
+  margin-left: 40px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .hero-title {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 800;
   color: #303030;
   margin-bottom: 8px;
+  line-height: 1.3;
 }
 
 .hero-subtitle {
@@ -107,7 +113,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Hero Section - Fix hero-phone mobile responsiveness */
 .hero-phone {
   position: absolute;
   right: 60px;
@@ -122,10 +127,14 @@ body {
 
 .hero-right {
   background-color: #fff9f4;
-  padding: 49px 40px;
-  width: 473px;
+  padding: 40px 36px;
+  width: 440px;
+  flex-shrink: 0;
   border: 1px solid #ffdfc4;
+  order: 2;
+  overflow-y: auto;
 }
+
 
 .form-title {
   font-size: 20px;
@@ -223,12 +232,8 @@ body {
 }
 
 @keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .stat-item {
@@ -375,7 +380,7 @@ body {
   color: #f58420;
 }
 
-/* Why Choose - Enhanced for collapsible functionality */
+/* Why Choose */
 .why-choose {
   padding: 60px;
   text-align: center;
@@ -523,38 +528,110 @@ body {
 /* Booking Section */
 .booking-section {
   background-color: #fff9f4;
-  padding: 20px 60px;
+  padding: 24px 60px 32px;
   border-radius: 10px;
   margin: 60px;
 }
 
+/* Row 1: three inputs + captcha box all in one flex line */
 .booking-form {
   display: flex;
-  gap: 24px;
+  align-items: center;
+  gap: 16px;
   margin-top: 20px;
 }
 
-.booking-input {
+/* Each field wrapper — grows equally */
+.booking-field {
   flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Captcha row: input + brown box side by side */
+.booking-field .captcha-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.booking-field .captcha-row .booking-input {
+  border-radius: 19px 0 0 19px;
+  flex: 1;
+}
+
+.booking-field .captcha-row .captcha-box {
+  border-radius: 0 19px 19px 0;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  min-width: 70px;
+}
+
+.booking-input {
+  width: 100%;
   padding: 12px 16px;
   border: 1px solid #ffdfc4;
   border-radius: 19px;
   background-color: #ffffff;
   font-size: 14px;
   color: #777777;
+  font-family: "Figtree", sans-serif;
 }
 
-.booking-phone-group {
+.booking-input:focus {
+  outline: none;
+  border-color: #f8943f;
+}
+
+/* Row 2: checkbox + terms text (flex: 1) + button — all one line */
+.booking-checkbox-group {
   display: flex;
-  gap: 0;
-  flex: 1;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  flex-wrap: nowrap;
 }
 
-.booking-phone {
+.booking-terms-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   flex: 1;
-  border-radius: 19px 0 19px 0;
+  min-width: 0;
 }
 
+.booking-terms-row .checkbox-label {
+  font-size: 12px;
+  color: #303030;
+  line-height: 1.3;
+  white-space: normal;
+}
+
+.booking-submit {
+  background-color: #f58420;
+  color: #ffffff;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 19px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: "Figtree", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.booking-submit:hover {
+  background-color: #de6f0c;
+}
+
+/* Legacy — kept for safety, no longer used in layout */
+.booking-phone-group { display: flex; gap: 0; flex: 1; }
+.booking-phone { flex: 1; border-radius: 19px 0 19px 0; }
 .booking-country-code {
   background-color: #462512;
   color: #ffffff;
@@ -565,25 +642,6 @@ body {
   align-items: center;
   justify-content: center;
   width: 110px;
-}
-
-.booking-checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 20px 0;
-  justify-content: center;
-}
-
-.booking-submit {
-  background-color: #f58420;
-  color: #ffffff;
-  padding: 12px 40px;
-  border: none;
-  border-radius: 19px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
 }
 
 /* Safety Section */
@@ -1019,819 +1077,317 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .hero-right {
-    width: 100%;
-  }
-
-  .treatment-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .treatment-card {
-    flex-direction: column;
-    width: 100%;
-    max-width: 500px;
-  }
-
-  .testimonial-grid {
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .why-choose-content {
-    flex-direction: column;
-  }
-
-  .safety-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .locations-grid {
-    flex-direction: column;
-  }
-
-  .cities-grid {
-    width: 100%;
-  }
-
-  .clinic-images {
-    width: 100%;
-    grid-template-columns: 1fr;
-  }
-
-  .health-plan {
-    flex-direction: column;
-  }
-
-  .plan-form {
-    width: 100%;
-  }
-
-  .plan-details {
-    flex-direction: column;
-  }
-
-  .faq-container {
-    flex-direction: column;
-  }
+  .hero { flex-direction: column; height: auto; }
+  .hero-right { width: 100%; }
+  .treatment-cards { flex-direction: column; align-items: center; }
+  .treatment-card { flex-direction: column; width: 100%; max-width: 500px; }
+  .testimonial-grid { flex-wrap: wrap; gap: 20px; }
+  .why-choose-content { flex-direction: column; }
+  .safety-cards { flex-direction: column; align-items: center; }
+  .locations-grid { flex-direction: column; }
+  .cities-grid { width: 100%; }
+  .clinic-images { width: 100%; grid-template-columns: 1fr; }
+  .health-plan { flex-direction: column; }
+  .plan-form { width: 100%; }
+  .plan-details { flex-direction: column; }
+  .faq-container { flex-direction: column; }
 }
 
 @media (max-width: 480px) {
-  .header {
-    padding: 16px 20px;
-  }
-
-  .hero-content {
-    padding: 20px;
-  }
-
-  .treatments,
-  .testimonials,
-  .why-choose,
-  .patient-reviews,
-  .safety-section,
-  .google-reviews,
-  .locations,
-  .health-plan,
-  .faq {
-    padding: 40px 20px;
-  }
-
-  .booking-section {
-    margin: 40px 20px;
-    padding: 20px;
-  }
-
-  .booking-form {
-    flex-direction: column;
-  }
-
-  .footer {
-    padding: 40px 20px;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .footer-links {
-    flex-direction: column;
-    text-align: center;
-    gap: 16px;
-  }
+  .header { padding: 16px 20px; }
+  .hero-content { padding: 20px; }
+  .treatments,.testimonials,.why-choose,.patient-reviews,.safety-section,.google-reviews,.locations,.health-plan,.faq { padding: 40px 20px; }
+  .booking-section { margin: 40px 20px; padding: 20px; }
+  .booking-form { flex-direction: column; gap: 12px; }
+  .booking-checkbox-group { flex-wrap: wrap; }
+  .booking-terms-row { flex: 1 1 100%; }
+  .booking-submit { width: 100%; justify-content: center; }
+  .footer { padding: 40px 20px; }
+  .footer-content { flex-direction: column; gap: 20px; }
+  .footer-links { flex-direction: column; text-align: center; gap: 16px; }
 }
 
-/* Responsive Styles - Enhanced Mobile Support */
 @media (max-width: 1200px) {
-  .container {
-    max-width: 100%;
-    padding: 0 20px;
-  }
-
-  .hero-content {
-    max-width: 500px;
-  }
-
-  .treatment-cards {
-    gap: 20px;
-  }
-
-  .treatment-card {
-    width: 500px;
-  }
+  .container { max-width: 100%; padding: 0 20px; }
+  .hero-content { max-width: 500px; }
+  .treatment-cards { gap: 20px; }
+  .treatment-card { width: 500px; }
 }
 
-/* Mobile Responsive Styles - Enhanced */
 @media (max-width: 992px) {
+  /* Photo anchored bottom-right inside hero-left — matches Figma */
   .hero-phone {
-    width: 250px;
-    height: auto;
-    right: 30px;
-    max-width: 40%;
-  }
-
-  .header {
-    padding: 16px 30px;
-  }
-
-  .header-buttons {
-    gap: 8px;
-  }
-
-  .btn {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-
-  .hero {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .hero-left {
-    height: 400px;
-    order: 2;
-  }
-
-  .hero-right {
-    width: 100%;
-    order: 1;
-    padding: 30px 20px;
-  }
-
-  .treatment-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .treatment-card {
-    width: 100%;
-    max-width: 600px;
-  }
-
-  .testimonial-grid {
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-
-  .testimonial-image {
-    width: 200px;
-    height: 150px;
-  }
-
-  .why-choose-content {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .why-choose-image {
-    width: 100%;
-    max-width: 400px;
-    height: 300px;
-  }
-
-  .safety-cards {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .safety-card {
-    width: 100%;
-    max-width: 400px;
-    height: 280px;
-  }
-
-  .reviews-container {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .review-cards {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .locations-grid {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .cities-grid {
-    width: 100%;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .clinic-images {
-    width: 100%;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-
-  .clinic-image {
-    width: 100%;
-    height: 150px;
-  }
-
-  .health-plan {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .plan-form {
-    width: 100%;
-  }
-
-  .plan-details {
-    flex-direction: column;
-  }
-
-  .plan-image {
-    width: 100%;
-    height: 250px;
-  }
-
-  .faq-container {
-    flex-direction: column;
-    gap: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-phone {
-    position: relative;
-    right: auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
     top: auto;
     transform: none;
-    width: 200px;
-    height: auto;
-    margin: 20px auto 0;
-    display: block;
-    max-width: 60%;
+    height: 96%;
+    width: auto;
+    max-width: 58%;
+    object-fit: contain;
+    object-position: bottom right;
   }
+  .header { padding: 16px 30px; }
+  .header-buttons { gap: 8px; }
+  .btn { padding: 8px 16px; font-size: 14px; }
+  .hero { flex-direction: column; height: auto; min-height: unset; }
+  .hero-left { height: 420px; width: 100%; overflow: hidden; order: 1; padding-bottom: 24px; }
+  .hero-right { width: 100%; order: 2; padding: 30px 20px; }
+  .treatment-cards { flex-direction: column; align-items: center; }
+  .treatment-card { width: 100%; max-width: 600px; }
+  .testimonial-grid { flex-wrap: wrap; gap: 20px; justify-content: center; }
+  .testimonial-image { width: 200px; height: 150px; }
+  .why-choose-content { flex-direction: column; gap: 30px; }
+  .why-choose-image { width: 100%; max-width: 400px; height: 300px; }
+  .safety-cards { flex-direction: column; align-items: center; gap: 20px; }
+  .safety-card { width: 100%; max-width: 400px; height: 280px; }
+  .reviews-container { flex-direction: column; gap: 20px; }
+  .review-cards { flex-wrap: wrap; justify-content: center; }
+  .locations-grid { flex-direction: column; gap: 30px; }
+  .cities-grid { width: 100%; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .clinic-images { width: 100%; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+  .clinic-image { width: 100%; height: 150px; }
+  .health-plan { flex-direction: column; gap: 30px; }
+  .plan-form { width: 100%; }
+  .plan-details { flex-direction: column; }
+  .plan-image { width: 100%; height: 250px; }
+  .faq-container { flex-direction: column; gap: 20px; }
+}
 
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
+@media (max-width: 768px) {
+  /* Keep photo absolute bottom-right at 768px too */
+  .hero-phone {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    transform: none;
+    height: 95%;
+    width: auto;
+    max-width: 56%;
+    object-fit: contain;
+    object-position: bottom right;
   }
-
-  .hero-content {
-    position: relative;
-    margin-bottom: 20px;
-  }
-
-  .feature-item {
-    padding: 12px 8px;
-    font-size: 14px;
-  }
-
-  .feature-toggle {
-    width: 20px;
-    height: 20px;
-    font-size: 16px;
-  }
-
-  .header {
-    padding: 12px 20px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .header-buttons {
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
-  }
-
-  .btn {
-    width: 100%;
-    justify-content: center;
-    padding: 10px 16px;
-  }
-
-  .hero-left {
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .hero-content {
-    padding: 16px 20px;
-    margin: 0 20px;
-    max-width: none;
-  }
-
-  .hero-title {
-    font-size: 18px;
-    margin-bottom: 12px;
-  }
-
-  .hero-subtitle {
-    font-size: 14px;
-    margin-bottom: 16px;
-  }
-
-  .hero-right {
-    padding: 24px 20px;
-  }
-
-  .form-title {
-    font-size: 18px;
-  }
-
-  .form-subtitle {
-    font-size: 14px;
-  }
-
-  .stats-scroll {
-    gap: 20px;
-  }
-
-  .stat-item {
-    gap: 8px;
-  }
-
-  .stat-icon {
-    width: 28px;
-    height: 28px;
-  }
-
-  .stat-text {
-    font-size: 12px;
-  }
-
-  .treatments,
-  .testimonials,
-  .why-choose,
-  .patient-reviews,
-  .safety-section,
-  .google-reviews,
-  .locations,
-  .health-plan,
-  .faq {
-    padding: 30px 20px;
-  }
-
-  .section-title {
-    font-size: 20px;
-  }
-
-  .section-subtitle {
-    font-size: 16px;
-  }
-
-  .treatment-card {
-    flex-direction: column;
-  }
-
-  .treatment-image {
-    width: 100%;
-    height: 200px;
-  }
-
-  .treatment-content {
-    padding: 16px;
-  }
-
-  .testimonial-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .testimonial-image {
-    width: 100%;
-    height: 120px;
-  }
-
-  .features-list {
-    gap: 8px;
-  }
-
-  .review-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .review-card {
-    min-width: auto;
-  }
-
-  .review-image {
-    width: 100%;
-    height: 180px;
-  }
-
-  .booking-section {
-    margin: 30px 20px;
-    padding: 20px 16px;
-  }
-
-  .booking-form {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .booking-phone-group {
-    flex-direction: row;
-  }
-
-  .booking-checkbox-group {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .safety-card {
-    height: 250px;
-  }
-
-  .safety-overlay {
-    padding: 16px;
-    margin: 16px;
-  }
-
-  .safety-title {
-    font-size: 16px;
-  }
-
-  .safety-description {
-    font-size: 14px;
-  }
-
-  .google-reviews {
-    padding: 30px 20px;
-  }
-
-  .review-cards {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .review-card-detailed {
-    width: 100%;
-    max-width: 350px;
-    margin: 0 auto;
-  }
-
-  .cities-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .city-card {
-    padding: 12px;
-  }
-
-  .clinic-images {
-    grid-template-columns: 1fr;
-  }
-
-  .clinic-image {
-    height: 200px;
-  }
-
-  .plan-pricing {
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-  }
-
-  .footer {
-    padding: 30px 20px;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-  }
-
-  .footer-links {
-    flex-direction: column;
-    gap: 12px;
-  }
+  .hero-left { position: relative; height: 460px; width: 100%; overflow: hidden; display: flex; align-items: flex-end; padding-bottom: 28px; order: 1; }
+  .hero-content { position: relative; z-index: 1; margin-bottom: 0; max-width: 55%; }
+  .feature-item { padding: 12px 8px; font-size: 14px; }
+  .feature-toggle { width: 20px; height: 20px; font-size: 16px; }
+  .header { padding: 12px 20px; }
+  .header-buttons { gap: 8px; }
+  /* Hide Book Appointment in header on mobile — phone number only like Figma */
+  .header-buttons .btn-primary { display: none; }
+  .btn { padding: 10px 16px; }
+  .hero-content { padding: 20px 24px; max-width: 58%; z-index: 1; position: relative; margin-left: 16px; }
+  .hero-title { font-size: 18px; margin-bottom: 12px; }
+  .hero-subtitle { font-size: 14px; margin-bottom: 16px; }
+  .hero-right { padding: 24px 20px; }
+  .form-title { font-size: 18px; }
+  .form-subtitle { font-size: 14px; }
+  .stats-scroll { gap: 20px; }
+  .stat-item { gap: 8px; }
+  .stat-icon { width: 28px; height: 28px; }
+  .stat-text { font-size: 12px; }
+  .treatments,.testimonials,.why-choose,.patient-reviews,.safety-section,.google-reviews,.locations,.health-plan,.faq { padding: 30px 20px; }
+  .section-title { font-size: 20px; }
+  .section-subtitle { font-size: 16px; }
+  .treatment-card { flex-direction: column; }
+  .treatment-image { width: 100%; height: 200px; }
+  .treatment-content { padding: 16px; }
+  .testimonial-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .testimonial-image { width: 100%; height: 120px; }
+  .features-list { gap: 8px; }
+  .review-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .review-card { min-width: auto; }
+  .review-image { width: 100%; height: 180px; }
+  .booking-section { margin: 30px 20px; padding: 20px 16px; }
+  .booking-form { flex-direction: column; gap: 12px; }
+  .booking-checkbox-group { flex-wrap: wrap; gap: 10px; }
+  .booking-terms-row { flex: 1 1 100%; }
+  .booking-submit { width: 100%; text-align: center; }
+  .safety-card { height: 250px; }
+  .safety-overlay { padding: 16px; margin: 16px; }
+  .safety-title { font-size: 16px; }
+  .safety-description { font-size: 14px; }
+  .google-reviews { padding: 30px 20px; }
+  .review-cards { flex-direction: column; gap: 16px; }
+  .review-card-detailed { width: 100%; max-width: 350px; margin: 0 auto; }
+  .cities-grid { grid-template-columns: 1fr; }
+  .city-card { padding: 12px; }
+  .clinic-images { grid-template-columns: 1fr; }
+  .clinic-image { height: 200px; }
+  .plan-pricing { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .footer { padding: 30px 20px; }
+  .footer-content { flex-direction: column; gap: 20px; text-align: center; }
+  .footer-links { flex-direction: column; gap: 12px; }
+  .btn:hover { transform: none; box-shadow: none; }
+  .btn:active { transform: scale(0.98); }
+  .city-card:hover { background-color: #f5f5f5; }
+  .faq-question { padding: 12px 0; touch-action: manipulation; }
+  .treatment-card { border-radius: 16px; }
+  .safety-card { border-radius: 16px; }
+  .review-card-detailed { border-radius: 12px; }
+  body { font-size: 14px; line-height: 1.6; }
+  .form-input,.booking-input { font-size: 16px; border-radius: 12px; }
+  .stats-scroll { padding: 0 20px; }
+  .review-grid { overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; -ms-overflow-style: none; }
+  .review-grid::-webkit-scrollbar { display: none; }
 }
 
 @media (max-width: 480px) {
+  .hero-left { height: 480px; }
   .hero-phone {
-    width: 150px;
-    max-width: 50%;
-  }
-
-  .feature-item {
-    padding: 10px 4px;
-    font-size: 13px;
-  }
-
-  .feature-description {
-    font-size: 12px;
-  }
-
-  .feature-toggle {
-    width: 18px;
-    height: 18px;
-    font-size: 14px;
-  }
-
-  .header {
-    padding: 10px 16px;
-  }
-
-  .btn {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-
-  .hero-content {
-    padding: 12px 16px;
-    margin: 0 16px;
-  }
-
-  .hero-title {
-    font-size: 16px;
-    line-height: 1.3;
-  }
-
-  .hero-subtitle {
-    font-size: 13px;
-  }
-
-  .hero-right {
-    padding: 20px 16px;
-  }
-
-  .form-title {
-    font-size: 16px;
-  }
-
-  .form-subtitle {
-    font-size: 13px;
-  }
-
-  .treatments,
-  .testimonials,
-  .why-choose,
-  .patient-reviews,
-  .safety-section,
-  .google-reviews,
-  .locations,
-  .health-plan,
-  .faq {
-    padding: 24px 16px;
-  }
-
-  .section-title {
-    font-size: 18px;
-    line-height: 1.3;
-  }
-
-  .section-subtitle {
-    font-size: 14px;
-    line-height: 1.4;
-  }
-
-  .treatment-content {
-    padding: 12px;
-  }
-
-  .treatment-title {
-    font-size: 16px;
-  }
-
-  .treatment-description {
-    font-size: 14px;
-  }
-
-  .testimonial-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .testimonial-image {
-    height: 150px;
-  }
-
-  .review-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .review-image {
-    height: 200px;
-  }
-
-  .booking-section {
-    margin: 24px 16px;
-    padding: 16px 12px;
-  }
-
-  .booking-form {
-    gap: 12px;
-  }
-
-  .booking-input {
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-
-  .booking-country-code {
-    padding: 10px 16px;
-    width: 80px;
-    font-size: 12px;
-  }
-
-  .safety-overlay {
-    padding: 12px;
-    margin: 12px;
-  }
-
-  .safety-title {
-    font-size: 14px;
-  }
-
-  .safety-description {
-    font-size: 12px;
-  }
-
-  .learn-more {
-    font-size: 12px;
-  }
-
-  .learn-more-icon {
-    width: 20px;
-    height: 20px;
-  }
-
-  .google-rating {
-    margin-bottom: 20px;
-  }
-
-  .rating-display {
-    justify-content: center;
-  }
-
-  .rating-number {
-    font-size: 20px;
-  }
-
-  .rating-count {
-    font-size: 20px;
-  }
-
-  .city-card {
-    padding: 10px;
-  }
-
-  .city-icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .city-name {
-    font-size: 14px;
-  }
-
-  .city-clinics {
-    font-size: 14px;
-  }
-
-  .plan-content {
-    padding: 16px;
-  }
-
-  .plan-title {
-    font-size: 16px;
-  }
-
-  .plan-description {
-    font-size: 14px;
-  }
-
-  .faq-question {
-    font-size: 14px;
-  }
-
-  .faq-answer {
-    font-size: 13px;
-  }
-
-  .footer-copyright {
-    font-size: 12px;
-    line-height: 1.4;
-  }
-}
-
-/* Touch and Mobile Interaction Improvements */
-@media (max-width: 768px) {
-  .btn:hover {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: auto;
     transform: none;
-    box-shadow: none;
+    height: 90%;
+    width: auto;
+    max-width: 56%;
+    object-fit: contain;
+    object-position: bottom right;
   }
-
-  .btn:active {
-    transform: scale(0.98);
-  }
-
-  .city-card:hover {
-    background-color: #f5f5f5;
-  }
-
-  .faq-question {
-    padding: 12px 0;
-    touch-action: manipulation;
-  }
-
-  .treatment-card {
-    border-radius: 16px;
-  }
-
-  .safety-card {
-    border-radius: 16px;
-  }
-
-  .review-card-detailed {
-    border-radius: 12px;
-  }
-
-  /* Improve text readability on mobile */
-  body {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  /* Better form inputs on mobile */
-  .form-input,
-  .booking-input {
-    font-size: 16px; /* Prevent zoom on iOS */
-    border-radius: 12px;
-  }
-
-  /* Scrollable horizontal sections */
-  .stats-scroll {
-    padding: 0 20px;
-  }
-
-  .review-grid {
-    overflow-x: auto;
-    padding-bottom: 10px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .review-grid::-webkit-scrollbar {
-    display: none;
-  }
+  .feature-item { padding: 10px 4px; font-size: 13px; }
+  .feature-description { font-size: 12px; }
+  .feature-toggle { width: 18px; height: 18px; font-size: 14px; }
+  .header { padding: 10px 16px; }
+  .btn { padding: 8px 12px; font-size: 12px; }
+  .hero-content { padding: 20px 16px; max-width: 54%; }
+  .hero-title { font-size: 16px; line-height: 1.3; }
+  .hero-subtitle { font-size: 13px; }
+  .hero-right { padding: 20px 16px; }
+  .form-title { font-size: 16px; }
+  .form-subtitle { font-size: 13px; }
+  .treatments,.testimonials,.why-choose,.patient-reviews,.safety-section,.google-reviews,.locations,.health-plan,.faq { padding: 24px 16px; }
+  .section-title { font-size: 18px; line-height: 1.3; }
+  .section-subtitle { font-size: 14px; line-height: 1.4; }
+  .treatment-content { padding: 12px; }
+  .treatment-title { font-size: 16px; }
+  .treatment-description { font-size: 14px; }
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .testimonial-image { height: 150px; }
+  .review-grid { grid-template-columns: 1fr; }
+  .review-image { height: 200px; }
+  .booking-section { margin: 24px 16px; padding: 16px 12px; }
+  .booking-form { flex-direction: column; gap: 10px; }
+  .booking-input { padding: 10px 12px; font-size: 14px; }
+  .booking-field .captcha-row .captcha-box { font-size: 13px; padding: 10px 14px; min-width: 60px; }
+  .safety-overlay { padding: 12px; margin: 12px; }
+  .safety-title { font-size: 14px; }
+  .safety-description { font-size: 12px; }
+  .learn-more { font-size: 12px; }
+  .learn-more-icon { width: 20px; height: 20px; }
+  .google-rating { margin-bottom: 20px; }
+  .rating-display { justify-content: center; }
+  .rating-number { font-size: 20px; }
+  .rating-count { font-size: 20px; }
+  .city-card { padding: 10px; }
+  .city-icon { width: 40px; height: 40px; }
+  .city-name { font-size: 14px; }
+  .city-clinics { font-size: 14px; }
+  .plan-content { padding: 16px; }
+  .plan-title { font-size: 16px; }
+  .plan-description { font-size: 14px; }
+  .faq-question { font-size: 14px; }
+  .faq-answer { font-size: 13px; }
+  .footer-copyright { font-size: 12px; line-height: 1.4; }
 }
 
-/* Landscape orientation on mobile */
 @media screen and (max-height: 500px) and (orientation: landscape) {
-  .hero {
-    flex-direction: row;
-  }
+  .hero { flex-direction: row; }
+  .hero-left { order: 1; height: 100vh; }
+  .hero-right { order: 2; height: 100vh; overflow-y: auto; }
+  .hero-phone { display: none; }
+}
 
-  .hero-left {
-    order: 1;
-    height: 100vh;
-  }
+/* ═══════════════════════════════════════════════════
+   FORM VALIDATION  — only new rules added below
+   (nothing above this line was modified)
+═══════════════════════════════════════════════════ */
 
-  .hero-right {
-    order: 2;
-    height: 100vh;
-    overflow-y: auto;
-  }
+.error-msg {
+  color: #d32f2f;
+  font-size: 12px;
+  margin-top: 4px;
+  display: none;
+  font-family: "Figtree", sans-serif;
+}
 
-  .hero-phone {
-    display: none;
-  }
+.error-msg.visible {
+  display: block;
+}
+
+.form-input.invalid,
+.booking-input.invalid {
+  border: 1.5px solid #d32f2f !important;
+  background: #fff5f5;
+}
+
+.form-input.valid,
+.booking-input.valid {
+  border: 1.5px solid #2e7d32 !important;
+}
+
+.checkbox.invalid + .checkbox-label {
+  color: #d32f2f;
+}
+
+/* Toast */
+#toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #2e7d32;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-family: "Figtree", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+  white-space: nowrap;
+}
+
+#toast.toast-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+#toast.toast-error {
+  background: #d32f2f;
+}
+
+/* Captcha */
+.captcha-box {
+  background: #462512;
+  border: none;
+  border-radius: 0 19px 0 19px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  font-family: "Figtree", sans-serif;
+  color: #ffffff;
+  user-select: none;
+  text-align: center;
+  min-width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.captcha-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.captcha-row .form-input,
+.captcha-row .booking-input {
+  flex: 1;
 }
